@@ -4,54 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>周南公立大学起業部</title>
-    <link rel="icon" href="favicon.png"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* ページ全体のスタイル */
         body, html {
             height: 100%;
             margin: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f0f2f5; /* 背景色 */
-            color: #1c1e21; /* 文字色 */
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
         }
-
-        /* 全体を中央に配置するためのコンテナ */
         .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column; /* 要素を縦に並べる */
+            flex-direction: column;
             height: 100%;
             text-align: center;
         }
-
-        /* メインの見出し */
         h1 {
-            font-size: 2.5rem; /* 文字の大きさ */
-            margin-bottom: 30px; /* アイコンとの間隔 */
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            position: relative; /* ▼変更点: ラインの基準位置にする */
+            padding-bottom: 20px; /* ▼変更点: ラインのための余白 */
         }
-
-        /* アイコンのリンクのスタイル */
+        /* ▼ここから追加▼ */
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background-color: #00B5AD;
+            border-radius: 3px;
+            animation: draw-line 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        @keyframes draw-line {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+        /* ▲ここまで追加▲ */
         .social-links a {
-            font-size: 2rem; /* アイコンの大きさ */
-            margin: 0 15px; /* アイコン同士の間隔 */
-            color: #333; /* アイコンの色 */
+            font-size: 2rem;
+            margin: 0 15px;
+            color: #000000;
             text-decoration: none;
-            transition: color 0.3s; /* 色が変わる時のアニメーション */
+            transition: color 0.3s, transform 0.3s;
         }
-
-        /* マウスを乗せた時のアイコンの色を変える */
         .social-links a:hover {
-            color: #007bff; /* マウスホバー時の色 */
+            color: #00B5AD;
+            transform: scale(1.1); /* ▼変更点: 少し拡大する効果を追加 */
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>周南公立大学起業部</h1>
         <div class="social-links"><a href="https://x.com/zebra_kigyo?lang=ja" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a href="https://www.instagram.com/zebra_kigyo/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></div>
     </div>
-
 </body>
 </html>
