@@ -1651,7 +1651,8 @@ section > .bg-slideup:first-child {
 .relative {position: relative;}
 .marker {background: linear-gradient(transparent 50%, #04b59f);} /* 変更点: マーカーの色をテーマカラーに合わせる */
 pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
-
+/* 変更点: スマホでは非表示にするための設定を追加 */
+    .pc {display: none;}
 	/*画面幅900px以上の追加指定*/
 	@media screen and (min-width:900px) {
 
