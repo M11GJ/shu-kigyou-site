@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>WEB制作・システム開発サイト向け（ランディングページタイプ） 無料ホームページテンプレート tp_biz63</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body id="manual">
+
+ 
+  
+<div id="container">
+
+
+
+<main style="padding-top: 200px;">
+
+
+
+<!--▼▼▼▼▼ここから「テキストスライドショー」-->
+<div class="text-slide-wrapper">
+<div class="text-slide">
+<span>SAMPLE COMPANY</span>
+</div>
+</div>
+<!--▲▲▲▲▲ここまで「テキストスライドショー」-->
+
+
+
+</main>
+
+
+
+</div>
+<!--/#container-->
+
+
+
+<div class="manual">
+
+<h2>「テキストスライドショー」ブロックについて</h2>
+
+<pre class="look">
+&lt;!--▼▼▼▼▼ここから「テキストスライドショー」--&gt;
+&lt;div class=&quot;text-slide-wrapper&quot;&gt;
+&lt;div class=&quot;text-slide&quot;&gt;
+&lt;span&gt;SAMPLE COMPANY&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!--▲▲▲▲▲ここまで「テキストスライドショー」--&gt;
+</pre>
+
+<h3>スタイルは</h3>
+<p>cssフォルダのstyle.cssから「/*テキストスライド」でテキスト検索してみて下さい。詳しい解説もあります。</p>
+
+<h3>文字は直接html側に書きます</h3>
+<p>&lt;span&gt;SAMPLE COMPANY&lt;/span&gt;<br>
+の部分です。</p>
+
+<h3>速度の調整は</h3>
+<p>main.jsの「テキストスライド」のブロックの、<br>
+<span class="look">30000, // アニメーション時間（ミリ秒）</span><br>
+の数字で調整できます。大きいほどゆっくりになります。</p>
+
+<h3>上に食い込むスタイルになっています</h3>
+<p>使う場所によっては上の要素に不自然に重なってしまうので、そういった場合はcssの<br>
+<span class="look">margin-top: calc(-1 * (1.6 * var(--space-large)));</span><br>
+の部分を調整して下さい。<br>
+この内容がよくわからなければ、直接的な数値で設定してもらってもOKです。<br>
+<span class="look">margin-top: 200px;</span><br>
+など。</p>
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

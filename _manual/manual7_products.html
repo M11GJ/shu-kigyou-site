@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>WEB制作・システム開発サイト向け（ランディングページタイプ） 無料ホームページテンプレート tp_biz63</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body id="manual">
+
+ 
+  
+<div id="container">
+
+
+
+<main>
+
+
+
+<!--▼▼▼▼▼ここから「制作実績」-->
+<section id="products">
+
+<h2 class="bg-slideup">
+<div class="image">
+<div class="en-text">Production Achievements</div>
+<div class="jp-text">制作実績</div>
+</div>
+</h2>
+
+<div class="list-grid-simple">
+
+<div class="list">
+<figure><img src="../images/thumb1.jpg" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="../images/thumb2.jpg" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="../images/thumb3.jpg" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="../images/thumb4.jpg" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="../images/thumb5.jpg" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="../images/thumb6.jpg" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+</div>
+<!--/.list-grid1-->
+
+<p class="btn1"><a href="#">もっと見る</a></p>
+
+</section>
+<!--▲▲▲▲▲ここまで「制作実績」-->
+
+
+
+</main>
+
+
+
+</div>
+<!--/#container-->
+
+
+
+<div class="manual">
+
+<h2>「制作実績」ブロックについて</h2>
+
+<pre class="look">
+&lt;!--▼▼▼▼▼ここから「制作実績」--&gt;
+&lt;section id=&quot;products&quot;&gt;
+
+&lt;h2 class=&quot;bg-slideup&quot;&gt;
+&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;en-text&quot;&gt;Production Achievements&lt;/div&gt;
+&lt;div class=&quot;jp-text&quot;&gt;制作実績&lt;/div&gt;
+&lt;/div&gt;
+&lt;/h2&gt;
+
+&lt;div class=&quot;list-grid-simple&quot;&gt;
+
+&lt;div class=&quot;list&quot;&gt;
+&lt;figure&gt;&lt;img src=&quot;../images/thumb1.jpg&quot; alt=&quot;&quot;&gt;&lt;/figure&gt;
+&lt;h4 class=&quot;c&quot;&gt;株式会社〇〇様&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;list&quot;&gt;
+&lt;figure&gt;&lt;img src=&quot;../images/thumb2.jpg&quot; alt=&quot;&quot;&gt;&lt;/figure&gt;
+&lt;h4 class=&quot;c&quot;&gt;株式会社〇〇様&lt;/h4&gt;
+&lt;/div&gt;
+
+・・・
+
+&lt;/div&gt;
+&lt;!--/.list-grid1--&gt;
+
+&lt;p class=&quot;btn1&quot;&gt;&lt;a href=&quot;#&quot;&gt;もっと見る&lt;/a&gt;&lt;/p&gt;
+
+&lt;/section&gt;
+&lt;!--▲▲▲▲▲ここまで「制作実績」--&gt;
+</pre>
+
+<h3>各ボックススタイルは</h3>
+<p>cssフォルダのstyle.cssから「list-grid-simple」でテキスト検索してみて下さい。詳しい解説もあります。</p>
+
+<h3>見出しについて</h3>
+<p>スクロール量と少しずれて背景画像が移動します。<br>
+背景画像は、style.cssの、<br>
+#products .bg-slideup .image {<br>
+のブロックになります。画像を入れ替える場合、横長だと動かない場合があるので実際に見ながら画像を準備してみて下さい。</p>
+<div id="products">
+<h2 class="bg-slideup">
+<div class="image">
+<div class="en-text">Production Achievements</div>
+<div class="jp-text">制作実績</div>
+</div>
+</h2>
+</div>
+<p>単純に横向きテキストを入れたい場合は、以下のhtmlにすればOKです。</p>
+<pre class="look">
+&lt;div id=&quot;products&quot;&gt;
+&lt;h2 class=&quot;bg-slideup&quot;&gt;
+&lt;div class=&quot;image&quot;&gt;
+見出しテキスト
+&lt;/div&gt;
+&lt;/h2&gt;
+&lt;/div&gt;
+</pre>
+<div id="products">
+<h2 class="bg-slideup">
+<div class="image">
+見出しテキスト
+</div>
+</h2>
+</div>
+
+
+<h3>「もっと見る」ボタン</h3>
+<p>classのつけかたで色々なボタンになります。お好みで。<br>
+矢印アイコンはFont Awesomeを使用しています。詳しくは<a href="manual.html">manual.html</a>をお読み下さい。</p>
+<p>実際にアイコンを指定している箇所は、style.cssの、<br>
+.btn1 a::after {<br>
+の中にあるc「content」の行です。</p>
+<p class="btn1"><a href="#" class="inline-block">もっと見る</a></p>
+<div class="c"><p class="btn1"><a href="#" class="inline-block">もっと見る</a></p></div>
+<div class="r"><p class="btn1"><a href="#" class="inline-block">もっと見る</a></p></div>
+<p class="btn1"><a href="#">もっと見る</a></p>
+
+</div>
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="../js/jquery.inview_set.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="../js/main.js"></script>
+
+</body>
+</html>

@@ -46,42 +46,53 @@
 <main>
 
 
-<!--▼▼▼▼▼ここから「お問い合わせフォーム（※サンプル画面）」-->
+<!--▼▼▼▼▼ここから「お問い合わせフォーム」-->
 <section>
 
 <form>
 
 <h2 class="c">お問い合わせ<span>Contact</span></h2>
-<p>当ページと同じ３項目のお問い合わせフォーム（自動フォーム試用版）を簡単に使えるようにセットしています。<br>
-<span class="color-check">※当ページ（contact.html）はフォームの見本ページです。実際の自動フォームには使いませんのでご注意下さい。</span></p>
-<p><span class="color-check">自動フォームを使う場合（※編集に入る前にご確認下さい）</span><br>
-あなたのメールアドレス設定と、簡単な編集だけで使えます。<a href="https://template-party.com/file/formgen_manual_set2.html" target="_blank">こちらのマニュアルをご覧下さい。</a></p>
-<p><span class="color-check">自動フォームを使わない場合</span><br>
-テンプレートに梱包されている「form.html」「confirm.html」「finish.html」の3枚のファイルを削除して下さい。</p>
 
+<!-- フォームの情報はここからです -->
+<form name="form1" enctype="multipart/form-data" method="post" action="<?php echo $_SERVER["REQUEST_URI"];?>">
+<input type="hidden" name="mode" value="form">
 <table class="ta1">
+<!-- 入力／確認 -->
+<!--<tr><th class="tamidashi" colspan="2">お問い合わせフォーム</th></tr>-->
 <tr>
-<th>お名前※</th>
-<td><input type="text" name="お名前" size="30" class="ws"></td>
+<th width="150">お名前<span style="color:red">※</span></th>
+<td>
+<input name="item1" value="<?php echo $form["item1"];?>" type="text" size="40" maxlength="500" class="ws">
+<?php if ($msg["item1"]) echo '<div style="color:red">' . $msg["item1"] . '</div>'; ?>
+</td>
 </tr>
 <tr>
-<th>メールアドレス※</th>
-<td><input type="text" name="メールアドレス" size="30" class="ws"></td>
+<th width="150">メールアドレス<span style="color:red">※</span></th>
+<td>
+<input name="item2" value="<?php echo $form["item2"];?>" type="text" size="40" maxlength="500" class="ws">
+<?php if ($msg["item2"]) echo '<div style="color:red">' . $msg["item2"] . '</div>'; ?>
+</td>
 </tr>
 <tr>
-<th>お問い合わせ詳細※</th>
-<td><textarea name="お問い合わせ詳細" cols="30" rows="10" class="wl"></textarea></td>
+<th>お問い合わせ内容<span style="color:red">※</span></th>
+<td>
+<textarea name="item3" cols="40" rows="10" class="wl"><?php echo $form["item3"]; ?></textarea>
+<?php if ($msg["item3"]) echo '<div style="color:red">' . $msg["item3"] . '</div>'; ?>
+</td>
 </tr>
 </table>
 
 <p class="c">
 <input type="submit" value="内容を確認する">
+&nbsp;
+<input type="reset" value="リセット">
 </p>
 
 </form>
+<!-- フォームの情報はここまでです -->
 
 </section>
-<!--▲▲▲▲▲ここまで「お問い合わせフォーム（※サンプル画面）」-->
+<!--▲▲▲▲▲ここまで「お問い合わせフォーム」-->
 
 
 
