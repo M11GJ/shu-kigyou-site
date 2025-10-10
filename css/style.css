@@ -1812,3 +1812,27 @@ section#faq .btn1 a:hover {
     .split-container:hover .split-panel:not(:hover) { width: 100%; }
     .split-container:hover .split-panel:hover { width: 100%; }
 }
+/* メイン画像のテキスト表示切り替え */
+
+/* 初期状態（モバイル表示）ではPC用テキスト(.pc)を非表示に */
+#mainimg .text .pc {
+    display: none;
+}
+/* モバイル用テキスト(.sh)は表示 */
+#mainimg .text .sh {
+    display: block;
+}
+
+/* 画面幅420px以上の追加指定 */
+@media screen and (min-width:420px) {
+
+    /* PC用テキスト(.pc)を表示 */
+    #mainimg .text .pc {
+        display: block;
+    }
+    /* モバイル用テキスト(.sh)を非表示に */
+    #mainimg .text .sh {
+        display: none;
+    }
+
+}
