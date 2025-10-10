@@ -449,7 +449,7 @@ a.ddmenu::before {
 }
 
 	/*画面420px以上の追加指定*/
-	@media screen and (min-width:420px) {
+	@media screen and (min-width:767px) {
 
 	#mainimg {
 		background: var(--base-color) url("../images/mainimg.jpg") no-repeat center center / cover;
