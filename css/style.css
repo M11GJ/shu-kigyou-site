@@ -26,8 +26,8 @@
 	--base-color: #fff;					/*テンプレートの土台となる色（主に背景カラー）*/
 	--base-inverse-color: #323232;		/*上のbase-colorの対となる色（主にテキストカラー）*/
 
-	--primary-color: #FEEC37;			/*テンプレートのメインまたはアクセントカラー*/
-	--primary-inverse-color: #323232;	/*上のprimary-colorの対となる色*/
+	--primary-color: #04b59f;			/* 変更点: テンプレートのメインカラーを #04b59f に変更 */
+	--primary-inverse-color: #000000;	    /* 変更点: メインカラーの対となる色を白に変更 */
 
 	--space-large: 8vw;			/*主に余白の一括管理用。画面幅100%＝100vwです。*/
 }
@@ -86,6 +86,8 @@ body {
 	background: var(--base-color);		/*varは背景色のことで冒頭のbase-colorを読み込みます。*/
 	color: var(--base-inverse-color);	/*文字色。冒頭で指定しているbase-inverse-colorを読み込みます。*/
 	line-height: 2;		/*行間*/
+	padding-top: 60px;
+
 }
 
 /*リセット他*/
@@ -113,7 +115,7 @@ input {font-size: 1rem;}
 /*section*/
 section {
 	overflow-x: hidden;
-	padding: var(--space-large);	
+	padding: var(--space-large);
 }
 
 
@@ -192,8 +194,11 @@ a:hover {
 /*header（ロゴが入った最上段のブロック）
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
+/*ヘッダーブロック*/
 header {
-	position: absolute;z-index: 1;
+	/* 変更点: position を "fixed" にしてヘッダーを固定 */
+	position: fixed;
+	z-index: 10; /* 他の要素より手前に表示 */
 	left: 0px;
 	top: 0px;
 	width: 100%;
@@ -202,6 +207,13 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	height: 60px;	/*ヘッダーの高さ*/
+
+	/* 追加: スクロール時に下のコンテンツが透けないように背景色を指定 */
+	background: rgba(255, 255, 255);
+	/* 追加: 影をつけて立体感を出す */
+	box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+	/* 追加: 背景色が変わるアニメーション */
+	transition: background-color 0.3s;
 }
 
 	/*画面幅700px以上の追加指定*/
@@ -216,7 +228,7 @@ header {
 /*ロゴ画像*/
 #logo img {
 	display: block;
-	width: 150px;	/*ロゴの幅*/
+	width: 170px;	/*ロゴの幅*/
 }
 #logo {
 	margin: 0;padding: 0;
@@ -228,7 +240,7 @@ header {
 
 	/*ロゴ画像*/
 	#logo img {
-		width: 200px;	/*ロゴの幅*/
+		width: 220px;	/*ロゴの幅*/
 	}
 
 	}/*追加指定ここまで*/
@@ -241,7 +253,7 @@ header nav ul {display: none;}
 
 	/*画面幅900px以上の追加指定*/
 	@media screen and (min-width:900px) {
-		
+
 	/*メニューブロック全体の設定*/
 	header > nav > ul {
 		margin-right: 100px;	/*ハンバーガーアイコンに重ならないように余白*/
@@ -254,7 +266,7 @@ header nav ul {display: none;}
 		font-size: 0.9rem;		/*文字サイズ90%*/
 		padding: 0.5rem 1rem;	/*メニュー内の余白。上下、左右へ。*/
 	}
-	
+
 	/*ドロップダウンメニュー冒頭の矢印アイコン*/
 	header nav i {
 		padding-right: 0.5rem;	/*右に空ける余白*/
@@ -437,7 +449,7 @@ a.ddmenu::before {
 }
 
 	/*画面420px以上の追加指定*/
-	@media screen and (min-width:420px) {
+	@media screen and (min-width:767px) {
 
 	#mainimg {
 		background: var(--base-color) url("../images/mainimg.jpg") no-repeat center center / cover;
@@ -448,17 +460,18 @@ a.ddmenu::before {
 
 #mainimg > div {
 	position: absolute;
-	top: 60px;	/*header分を確保*/
+	top: 60px;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 60px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
+	justify-content: flex-start; /* 変更点: 上寄せに変更 */
+	padding-top: vh; /* 追加: 上から少し余白を空ける */
 }
 	/*画面420px以上の追加指定*/
-	@media screen and (min-width:420px) {
+	@media screen and (min-width:600px) {
 
 	#mainimg > div {
 		left: var(--space-large);
@@ -478,7 +491,7 @@ a.ddmenu::before {
 }
 
 	/*画面420px以上の追加指定*/
-	@media screen and (min-width:420px) {
+	@media screen and (min-width:600px) {
 
 	#mainimg .text {
 		text-align: left;	/*テキストを左寄せ*/
@@ -509,13 +522,13 @@ a.ddmenu::before {
 }
 
 	/*画面420px以上の追加指定*/
-	@media screen and (min-width:420px) {
+	@media screen and (min-width:600px) {
 
 	/*ボタン*/
 	#mainimg .btn {
 		font-size: 1.4vw;	/*文字サイズ*/
 	}
-	
+
 	#mainimg .btn a {
 		margin: 0;
 		padding: 0.6rem 3rem;	/*ボタン内の余白。上下、左右へ。1rem=1文字分です。*/
@@ -610,7 +623,8 @@ h2 img {
 footer {
 	background: var(--primary-color);		/*背景色。冒頭のprimary-colorを読み込みます。*/
 	color: var(--primary-inverse-color);	/*文字色。冒頭のprimary-inverse-colorを読み込みます。*/
-	padding: 2rem;	/*フッター内の余白。2文字分。*/
+	padding: 1.5rem;	
+	white-space: nowrap;/*フッター内の余白。2文字分。*/
 	display: flex;
 	flex-direction: column-reverse;
 }
@@ -677,7 +691,7 @@ footer small {
 
 	/*画面700px以上の追加指定*/
 	@media screen and (min-width:700px) {
-	
+
 	.icons {
 		justify-content: flex-start;
 	}
@@ -992,7 +1006,7 @@ footer small {
 		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L100,0 L100,90 L50,100 L0,90 Z' fill='%23000000'/%3E%3C/svg%3E");
 		padding-bottom: 150px;
 	}
-	
+
 
 	}/*追加指定ここまで*/
 
@@ -1161,7 +1175,7 @@ footer small {
 
 	/*画面幅600px以上の追加指定*/
 	@media screen and (min-width:600px) {
-	
+
 	/*２つのボックスを囲むボックス*/
 	.list-c2 {
 		display: flex;	/*横並びにする*/
@@ -1185,7 +1199,7 @@ footer small {
 
 	/*画面幅600px以上の追加指定*/
 	@media screen and (min-width:600px) {
-	
+
 	.list-c2 > * {
 		flex: 1;
 	}
@@ -1198,17 +1212,17 @@ footer small {
 	.list-c2 > a .list {
 		height: 100%;
 	}
-	
+
 	/*1つ目のボックス（お問い合わせ）*/
 	.list-c2 .list:nth-of-type(1) {
 		border-radius: 0px 30px 30px 0px;	/*角丸の上書き。左上、右上、右下、左下への順番。*/
 	}
-	
+
 	/*2つ目のボックス（資料請求）*/
 	.list-c2 .list:nth-of-type(2) {
 		border-radius: 30px 0px 0px 30px;	/*角丸の上書き。左上、右上、右下、左下への順番。*/
 	}
-	
+
 	}/*追加指定ここまで*/
 
 
@@ -1235,7 +1249,7 @@ footer small {
 	display: block;
 	font-size: 3rem;		/*文字サイズ。3倍。*/
 	padding-top: 1.5rem;	/*上に空ける余白*/
-	padding-bottom: 3rem;	/*下に空ける余白*/
+	padding-bottom: 3rem;	/*下に空ける余백*/
 }
 
 	/*画面幅600px以上の追加指定*/
@@ -1309,7 +1323,7 @@ section > .bg-slideup:first-child {
 }
 
 /*会社概要ブロックの画像指定*/
-#company .bg-slideup .image {
+#about .bg-slideup .image {
 	background-image: url("../images/bg_company.jpg");	/*背景画像の指定*/
 }
 
@@ -1325,13 +1339,13 @@ section > .bg-slideup:first-child {
 	.list-normal1 .text {
 		flex: 1;
 	}
-	
+
 	/*画像とテキストの左右を入れ替えたい場合（600px以上のみ使用可能）*/
 	.reverse {
 		flex-direction: row-reverse;
 		background-position: left bottom !important;
 	}
-	
+
 	}/*追加指定ここまで*/
 
 
@@ -1353,7 +1367,7 @@ section > .bg-slideup:first-child {
 		display: flex;
 		gap: 2rem;	/*画像とテキストの間のスペース。２文字分。画像がない場合はこれは適用されません。*/
 	}
-	
+
 	}/*追加指定ここまで*/
 
 
@@ -1635,9 +1649,10 @@ section > .bg-slideup:first-child {
 .block {display: block !important;}
 .inline-block {display: inline-block !important;}
 .relative {position: relative;}
-.marker {background: linear-gradient(transparent 50%, yellow);}
+.marker {background: linear-gradient(transparent 50%, #04b59f);} /* 変更点: マーカーの色をテーマカラーに合わせる */
 pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
-
+/* 変更点: スマホでは非表示にするための設定を追加 */
+    .pc {display: none;}
 	/*画面幅900px以上の追加指定*/
 	@media screen and (min-width:900px) {
 
@@ -1646,5 +1661,178 @@ pre {white-space: pre-wrap;word-wrap: break-word;overflow-wrap: break-word;}
 	.pc {display: block;}
 
 	}/*追加指定ここまで*/
+	/* 【追加】部員の声 カードデザイン */
 
+	/* 【追加】よく頂く質問の背景を白に変更 */
+/* 【追加】よく頂く質問の背景を薄いグレーに変更 */
+/* 【追加】よく頂く質問のQ&Aをカード形式に変更 */
+/* 【追加】よく頂く質問の背景を薄いグレーに変更 */
+section#faq {
+	background: #d3d3d3; /* 背景を薄いグレーに */
+	color: var(--base-inverse-color); /* 文字色を基本の黒に */
+	padding-top: 10vw;
+	padding-bottom: 14vw;
+}
 
+section#faq .c2 .title h2 {
+	color: var(--base-inverse-color); /* 見出しの文字色を黒に */
+}
+
+section#faq .c2 .title h2 span {
+	opacity: 0.5;
+}
+
+section#faq .btn1 a {
+	background: var(--primary-color);
+	color: #fff;
+}
+
+section#faq .btn1 a:hover {
+	background: var(--base-inverse-color);
+	color: var(--base-color);
+}
+/* 【追加】ヘッダー左側のロゴとSNSアイコンの配置 */
+.header-left {
+	display: flex;
+	align-items: center; /* 上下中央揃え */
+}
+
+/* 【追加】ヘッダーのSNSアイコンリスト */
+.header-sns {
+	list-style: none; /*箇条書きの黒丸を消す*/
+	display: flex; /* 横並びにする */
+	margin: 0 0 0 20px; /* ロゴの右に20pxの余白を空ける */
+	padding: 0;
+}
+
+/* 【追加】ヘッダーのSNSアイコン個別設定 */
+.header-sns li {
+	margin: 0 8px; /* アイコン同士の左右の余白 */
+}
+
+.header-sns a {
+	color: var(--base-inverse-color); /* アイコンの色を黒に */
+	font-size: 22px; /* アイコンのサイズ */
+}
+
+/* 画面が狭いときはヘッダーSNSアイコンを非表示にする */
+@media screen and (max-width: 899px) {
+	.header-sns {
+		display: none;
+	}
+}
+/* 【更新】お問い合わせ 入り口ページのデザイン */
+.split-container {
+	display: flex;
+	/* 変更点: ヘッダーとフッターの間の高さを確保 */
+	height: calc(100vh); /* 全体高 - ヘッダー高 - フッター高 */
+	min-height: 500px; /* 最小の高さを設定 */
+}
+
+.split-panel {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	position: relative;
+	overflow: hidden;
+	transition: width 0.5s ease;
+}
+
+.split-panel::before {
+	content: '';
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background-size: cover;
+	background-position: center;
+	transition: transform 0.5s ease;
+}
+
+.split-panel.student::before {
+	background-image: url('images/bg_contact.jpg');
+	background-color: rgba(4, 181, 159, 0.7);
+    background-blend-mode: multiply;
+}
+
+.split-panel.other::before {
+	background-image: url('images/bg_request.jpg');
+	background-color: rgba(50, 50, 50, 0.7);
+    background-blend-mode: multiply;
+}
+
+.panel-content {
+	position: relative;
+	z-index: 2;
+	padding: 2em;
+}
+
+.panel-content h2 {
+	font-size: 2.5vw;
+	margin-bottom: 0.5em;
+	text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.panel-content p {
+	font-size: 1.2vw;
+	text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+/* マウスホバー時のエフェクト */
+.split-container:hover .split-panel:not(:hover) {
+    width: 40%;
+}
+.split-container:hover .split-panel:hover {
+    width: 60%;
+}
+.split-panel:hover::before {
+	transform: scale(1.05);
+}
+
+/* 削除: 戻るボタンのスタイルは不要になったため削除 */
+
+/* スマホ用の設定 */
+@media (max-width: 768px) {
+	.split-container {
+		flex-direction: column;
+		/* 変更点: スマホ表示時の高さを調整 */
+		height: auto;
+	}
+	.split-panel {
+		width: 100%;
+		height: 40vh; /* 画面の高さの40%ずつを割り当て */
+		min-height: 250px;
+	}
+    .panel-content h2 { font-size: 6vw; }
+    .panel-content p { font-size: 3vw; }
+    .split-container:hover .split-panel:not(:hover) { width: 100%; }
+    .split-container:hover .split-panel:hover { width: 100%; }
+}
+/* メイン画像のテキスト表示切り替え */
+
+/* 初期状態（モバイル表示）ではPC用テキスト(.pc)を非表示に */
+#mainimg .text .pc {
+    display: none;
+}
+/* モバイル用テキスト(.sh)は表示 */
+#mainimg .text .sh {
+    display: block;
+}
+
+/* 画面幅420px以上の追加指定 */
+@media screen and (min-width:600px) {
+
+    /* PC用テキスト(.pc)を表示 */
+    #mainimg .text .pc {
+        display: block;
+    }
+    /* モバイル用テキスト(.sh)を非表示に */
+    #mainimg .text .sh {
+        display: none;
+    }
+
+}
