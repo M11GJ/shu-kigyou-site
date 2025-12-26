@@ -77,6 +77,34 @@
             color: #333;
         }
 
+        /* View More リンクのスタイル */
+        .view-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .view-more-link:hover {
+            opacity: 1;
+            gap: 0.7rem;
+            color: var(--base-inverse-color);
+        }
+
+        .view-more-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .view-more-link:hover::after {
+            transform: translateX(4px);
+        }
+
         @media screen and (min-width:700px) {
             .activity-item {
                 display: flex;
@@ -198,6 +226,7 @@
       <div class="activity-content">
           <h4>クリスマスキッチンカーイベントを行いました🚚🎄</h4>
           <p>周南公立大学S1号館前にてキッチンカーイベントを行いました！大学のクリスマスツリーや装飾と共に楽しいクリスマスイベントになりました🎅🏻</p>
+          <a href="https://note.com/" class="view-more-link" target="_blank" rel="noopener">View More</a>
       </div>
   </div>
 <div class="activity-item">
@@ -205,6 +234,7 @@
       <div class="activity-content">
           <h4>CROSS SPACE 紡さんと新しく交流会を立ち上げました！</h4>
           <p>これまでの合同交流会とは姿を変えて新たに社会人向け交流イベント「ヨコいと」を立ち上げました。詳しくはCROSS SPACE 紡さんのSNSをチェック！</p>
+          <a href="https://note.com/" class="view-more-link" target="_blank" rel="noopener">View More</a>
       </div>
   </div>
                 <!-- ACTIVITIES_END -->
