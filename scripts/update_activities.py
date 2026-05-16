@@ -32,6 +32,7 @@ def generate_activity_html(activities, members):
         link = act.get('link', '')
         tagged_ids = act.get('taggedIds', [])
         
+        # 寄稿者HTML（下部に配置）
         contributors_html = ""
         if tagged_ids:
             avatar_items = []
@@ -40,26 +41,30 @@ def generate_activity_html(activities, members):
                 if not m_id or display_count >= MAX_AVATARS: continue
                 if m_id in members:
                     m = members[m_id]
-                    if m.get('displaySetting') == '名前' and m.get('avatar'):
-                        img = f'<img src="{m["avatar"]}" alt="{m["name"]}" title="{m["name"]}">'
-                    else:
-                        img = f'<span class="tag-icon" title="{m.get("name","")}">{m.get("initial","")}</span>'
-                    
-                    # 【修正】部員プロフィールへのリンクを追加
+                    img = f'<img src="{m["avatar"]}" alt="{m["name"]}" title="{m["name"]}">' if (m.get('displaySetting') == '名前' and m.get('avatar')) else f'<span class="tag-icon" title="{m.get("name","")}">{m.get("initial","")}</span>'
                     link_html = f'<a href="members.html#{m_id}" class="contributor-link">{img}</a>'
                     avatar_items.append(f'<div class="contributor-avatar">{link_html}</div>')
                     display_count += 1
             if len(tagged_ids) > MAX_AVATARS:
                 avatar_items.append(f'<div class="plus-counter">+{len(tagged_ids) - MAX_AVATARS}</div>')
             if avatar_items:
-                contributors_html = f'<div class="activity-contributors"><span class="contributors-label">Activity By</span><div class="avatar-list">{"".join(avatar_items)}</div></div>'
+                contributors_html = f'<div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list">{"".join(avatar_items)}</div></div>'
 
+        # View More（右上に配置）
         view_more_btn = f'<a href="{link}" class="view-more-link" target="_blank" rel="noopener">View More</a>' if link else ""
         
+        # 構造を再構築
         item_html = f"""
         <div class="activity-item" id="activity-{i}">
-            <div class="activity-left"><span class="activity-date">{date}</span>{contributors_html}</div>
-            <div class="activity-content"><h4>{title}</h4><p>{content}</p>{view_more_btn}</div>
+            <div class="activity-header-mobile">
+                <span class="activity-date">{date}</span>
+                {view_more_btn}
+            </div>
+            <div class="activity-content">
+                <h4>{title}</h4>
+                <p>{content}</p>
+                {contributors_html}
+            </div>
         </div>"""
         html_parts.append(item_html)
     return "\n".join(html_parts)
