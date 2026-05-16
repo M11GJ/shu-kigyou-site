@@ -1,8 +1,7 @@
 import json
 import os
-import re
+import sys
 
-# 設定
 ACTIVITY_HTML_PATH = 'activity.html'
 MEMBERS_JSON_PATH = 'data/members.json'
 ACTIVITIES_JSON_PATH = 'data/activities.json'
@@ -17,7 +16,7 @@ def generate_activity_html(activities, members):
     html_parts = []
     for i, act in enumerate(activities):
         date_str = str(act.get('date', ''))
-        # 【ガード】日付が 'member' で始まる、または日付として明らかに異常な場合はスキップ
+        # 【ガード】不適切なデータをスキップ
         if date_str.startswith('member') or '@' in str(act.get('title', '')):
             print(f"Skipping invalid activity data: {date_str}")
             continue
@@ -28,97 +27,103 @@ def generate_activity_html(activities, members):
         link = act.get('link', '')
         tagged_ids = act.get('taggedIds', [])
         
-        # アンカー用のID
-        activity_id = f"activity-{i}"
-        
-        # ラベル付きアバターリストの生成
-        tags_html = ""
+        # 寄稿者のアバターHTML生成
+        contributors_html = ""
         if tagged_ids:
-            tags_html = '<div class="activity-contributors">'
-            tags_html += '<span class="contributors-label">Activity by</span>'
-            tags_html += '<div class="avatar-list">'
+            avatar_items = []
+            display_count = 0
             
-            display_ids = tagged_ids[:MAX_AVATARS]
-            remaining = len(tagged_ids) - MAX_AVATARS
+            for m_id in tagged_ids:
+                if not m_id: continue
+                if display_count >= MAX_AVATARS:
+                    break
+                
+                if m_id in members:
+                    m = members[m_id]
+                    name = m.get('name', '')
+                    initial = m.get('initial', '')
+                    avatar_url = m.get('avatar', '')
+                    display_setting = m.get('displaySetting', 'イニシャル')
+                    
+                    if display_setting == '名前' and avatar_url:
+                        img_html = f'<img src="{avatar_url}" alt="{name}" title="{name}">'
+                    else:
+                        img_html = f'<span class="tag-icon" title="{name}">{initial}</span>'
+                    
+                    avatar_items.append(f'<div class="contributor-avatar">{img_html}</div>')
+                    display_count += 1
             
-            for mid in display_ids:
-                member = members.get(mid, {})
-                name = member.get('name') or member.get('initial') or mid
-                avatar = member.get('avatar', '')
-                
-                if avatar:
-                    tag_img = f'<img src="{avatar}" alt="{name}">'
-                else:
-                    initial = member.get('initial', name[0] if name else '?')
-                    tag_img = f'<span class="tag-icon">{initial[0]}</span>'
-                
-                tags_html += f"""
-                    <a href="members.html?id={mid}" class="contributor-avatar" title="{name}">
-                        {tag_img}
-                    </a>"""
+            if len(tagged_ids) > MAX_AVATARS:
+                plus_count = len(tagged_ids) - MAX_AVATARS
+                avatar_items.append(f'<div class="plus-counter">+{plus_count}</div>')
             
-            if remaining > 0:
-                tags_html += f'<span class="contributor-avatar plus-counter">+{remaining}</span>'
-                
-            tags_html += '</div></div>'
-        
-        # View More リンク
-        view_more_html = f'<a href="{link}" target="_blank" class="view-more-link">View More</a>' if link else ""
+            if avatar_items:
+                contributors_html = f"""
+                <div class="activity-contributors">
+                    <span class="contributors-label">Activity By</span>
+                    <div class="avatar-list">
+                        {"".join(avatar_items)}
+                    </div>
+                </div>"""
+
+        # ビューモアリンク生成
+        view_more_btn = f'<a href="{link}" class="view-more-link" target="_blank" rel="noopener">View More →</a>' if link else ""
         
         item_html = f"""
-<div class="activity-item" id="{activity_id}">
-    <div class="activity-left-col">
-        <div class="activity-header-mobile">
-            <span class="activity-date">{date}</span>
-            <div class="view-more-mobile">{view_more_html}</div>
-        </div>
-        <div class="tags-for-pc">{tags_html}</div>
-    </div>
-    <div class="activity-content">
-        <h4>{title}</h4>
-        <p>{content}</p>
-        <div class="tags-for-mobile">{tags_html}</div>
-        <div class="view-more-for-pc">{view_more_html}</div>
-    </div>
-</div>"""
+        <div class="activity-item" id="activity-{i}">
+            <div class="activity-left">
+                <span class="activity-date">{date}</span>
+                {contributors_html}
+            </div>
+            <div class="activity-content">
+                <h4>{title}</h4>
+                <p>{content}</p>
+                {view_more_btn}
+            </div>
+        </div>"""
         html_parts.append(item_html)
     
     return "\n".join(html_parts)
 
 def update_activity_page():
     if not os.path.exists(ACTIVITIES_JSON_PATH):
-        print("Activities JSON not found.")
+        print("Error: activities.json not found.")
         return
-
-    with open(ACTIVITIES_JSON_PATH, 'r', encoding='utf-8') as f:
-        try:
-        activities = json.load(f)
-    except json.JSONDecodeError:
-        print("Error: activities.json is not valid JSON")
-        return None
     
+    # メンバー情報の読み込み
     members = {}
     if os.path.exists(MEMBERS_JSON_PATH):
         with open(MEMBERS_JSON_PATH, 'r', encoding='utf-8') as f:
             members = json.load(f)
-            
-    # HTML生成
+    
+    # 活動実績の読み込み
+    with open(ACTIVITIES_JSON_PATH, 'r', encoding='utf-8') as f:
+        try:
+            activities = json.load(f)
+        except json.JSONDecodeError:
+            print("Error: activities.json is not valid JSON. (Probably received HTML error page)")
+            return
+
     new_content = generate_activity_html(activities, members)
-    
-    # ファイル読み込み
+    if new_content is None: return
+
     with open(ACTIVITY_HTML_PATH, 'r', encoding='utf-8') as f:
-        html = f.read()
-    
-    # 置換
-    pattern = re.compile(r'<!-- ACTIVITIES_START -->.*?<!-- ACTIVITIES_END -->', re.DOTALL)
-    replacement = f'<!-- ACTIVITIES_START -->{new_content}\n                <!-- ACTIVITIES_END -->'
-    
-    updated_html = pattern.sub(replacement, html)
-    
-    # 保存
+        lines = f.readlines()
+
     with open(ACTIVITY_HTML_PATH, 'w', encoding='utf-8') as f:
-        f.write(updated_html)
-    print("Successfully updated activity.html with anchors (id='activity-N')")
+        skip = False
+        for line in lines:
+            if '<!-- ACTIVITIES_START -->' in line:
+                f.write(line)
+                f.write(new_content + "\n")
+                skip = True
+            elif '<!-- ACTIVITIES_END -->' in line:
+                f.write(line)
+                skip = False
+            elif not skip:
+                f.write(line)
+    
+    print(f"Successfully updated {ACTIVITY_HTML_PATH} with anchors (id='activity-N')")
 
 if __name__ == "__main__":
     update_activity_page()
