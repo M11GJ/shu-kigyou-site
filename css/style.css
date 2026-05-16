@@ -167,6 +167,7 @@ a {
     justify-content: center !important;
     margin: 0 !important; /* 重なりを強制解除 */
     transition: all 0.3s ease !important;
+    text-decoration: none !important;
 }
 
 .contributor-avatar:hover {
@@ -185,6 +186,17 @@ a {
     font-size: 12px !important;
     font-weight: 800 !important;
     color: #04b59f !important;
+}
+
+/* PC版（700px以上）での寄稿者アイコン拡大 */
+@media screen and (min-width: 700px) {
+    .contributor-avatar {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .contributor-avatar .tag-icon {
+        font-size: 14px !important;
+    }
 }
 
 .avatar-list .plus-counter {
@@ -1868,3 +1880,222 @@ section#faq .btn1 a:hover {
 
 }
 /* Last Updated: Sat May 16 14:53:19 JST 2026 */
+.pc-only-col, .pc-only-footer { display: block; }
+.mobile-only-col, .mobile-only-footer { display: none; }
+
+@media (max-width: 750px) {
+    .pc-only-col, .pc-only-footer { display: none !important; }
+    .mobile-only-col { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .mobile-only-footer { display: block !important; }
+    .activity-left { display: none !important; }
+}
+
+/* 左寄せの強制 */
+.fixed-left, .activity-contributors, .avatar-list {
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+}
+.contributor-link { text-decoration: none !important; border: none !important; }
+/* 
+ * Activity Page 専用・新スタイル (既存クラスへの干渉を排除) 
+ */
+
+/* 出し分け */
+.act-pc-left, .act-pc-footer { display: block; }
+.act-mobile-header, .act-mobile-footer { display: none; }
+
+@media screen and (max-width: 750px) {
+    .act-pc-left, .act-pc-footer { display: none !important; }
+    .act-mobile-header, .act-mobile-footer { display: block !important; }
+    .act-mobile-header { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .activity-item { display: block !important; padding: 2rem 0 !important; }
+}
+
+/* PC版レイアウト */
+@media screen and (min-width: 751px) {
+    .activity-item { display: flex !important; gap: 50px; padding: 3rem 0 !important; }
+    .act-pc-left { width: 180px; flex-shrink: 0; }
+    .act-pc-footer { margin-top: 2rem; text-align: left; }
+}
+
+/* アバター・メタ情報 (PC・モバイル共通の「左寄せ・横並び」) */
+.act-pc-avatars, .act-mobile-avatars {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.act-meta-label {
+    font-size: 10px;
+    color: #999;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.act-avatar-group {
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 5px;
+}
+
+.act-avatar-item {
+    width: 30px;
+    height: 30px;
+}
+
+.act-avatar-link {
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.act-avatar-link img, .act-avatar-link .tag-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+/* 日付とViewMoreの装飾 */
+.act-date-text {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.act-view-more {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none !important;
+    border: none !important;
+}
+.act-view-more::after { content: " →"; }
+
+/* タイトルのスタイルを元の大きさに戻す */
+.act-content-area h4 {
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 1rem 0 !important;
+    color: var(--base-inverse-color) !important;
+    line-height: 1.4 !important;
+}
+
+/* ついでに本文のサイズも微調整して元に合わせる */
+.act-content-area p {
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+    color: #333 !important;
+}
+
+/* アイコンリンクを確実にクリック可能にする */
+.act-avatar-link {
+    display: block !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.act-avatar-item {
+    position: relative !important;
+    z-index: 5 !important;
+}
+/* 
+ * Activity Page 専用・新スタイル (完全独立版) 
+ */
+
+/* 出し分け */
+.act-pc-left, .act-pc-footer { display: block; }
+.act-mobile-header, .act-mobile-footer { display: none; }
+
+@media screen and (max-width: 750px) {
+    .act-pc-left, .act-pc-footer { display: none !important; }
+    .act-mobile-header, .act-mobile-footer { display: block !important; }
+    .act-mobile-header { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .activity-item { display: block !important; padding: 2rem 0 !important; }
+}
+
+/* PC版レイアウト */
+@media screen and (min-width: 751px) {
+    .activity-item { display: flex !important; gap: 50px; padding: 3rem 0 !important; }
+    .act-pc-left { width: 180px; flex-shrink: 0; }
+    .act-pc-footer { margin-top: 2rem; text-align: left; }
+}
+
+/* アバター周り: どんなことがあっても左寄せ・横並び */
+.act-pc-avatars, .act-mobile-avatars {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* 絶対左寄せ */
+    flex-direction: row !important; /* 絶対横並び */
+    gap: 10px !important;
+    margin-top: 15px !important;
+}
+
+.act-avatar-group {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 5px !important;
+}
+
+.act-avatar-item {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.act-avatar-link {
+    display: inline-flex !important; /* 横並びを壊さない */
+    width: 100% !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+/* タイトルとフォントを「力強い」状態に固定 */
+.act-content-area h4 {
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 1rem 0 !important;
+    color: var(--base-inverse-color) !important;
+}
+.act-content-area p {
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+}
+.act-date-text { font-size: 1.1rem; font-weight: 800; color: var(--primary-color); }
+.act-view-more { font-size: 0.95rem; font-weight: 700; color: var(--primary-color); text-decoration: none !important; }
+.act-view-more::after { content: " →"; }
+
+/* PC版のレイアウト崩れ（重なり）をGridで強制解決 */
+@media screen and (min-width: 751px) {
+    .activity-item {
+        display: grid !important;
+        grid-template-columns: 200px 1fr !important; /* 左200px固定、右は残り全部 */
+        gap: 40px !important;
+        align-items: start !important;
+        padding: 3rem 0 !important;
+    }
+    
+    .act-pc-left {
+        grid-column: 1 !important;
+        width: 200px !important;
+    }
+    
+    .act-content-area {
+        grid-column: 2 !important;
+        min-width: 0 !important; /* はみ出し防止 */
+    }
+}

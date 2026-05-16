@@ -1,0 +1,67 @@
+/* 
+ * Activity Page 専用・新スタイル (完全独立版) 
+ */
+
+/* 出し分け */
+.act-pc-left, .act-pc-footer { display: block; }
+.act-mobile-header, .act-mobile-footer { display: none; }
+
+@media screen and (max-width: 750px) {
+    .act-pc-left, .act-pc-footer { display: none !important; }
+    .act-mobile-header, .act-mobile-footer { display: block !important; }
+    .act-mobile-header { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .activity-item { display: block !important; padding: 2rem 0 !important; }
+}
+
+/* PC版レイアウト */
+@media screen and (min-width: 751px) {
+    .activity-item { display: flex !important; gap: 50px; padding: 3rem 0 !important; }
+    .act-pc-left { width: 180px; flex-shrink: 0; }
+    .act-pc-footer { margin-top: 2rem; text-align: left; }
+}
+
+/* アバター周り: どんなことがあっても左寄せ・横並び */
+.act-pc-avatars, .act-mobile-avatars {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* 絶対左寄せ */
+    flex-direction: row !important; /* 絶対横並び */
+    gap: 10px !important;
+    margin-top: 15px !important;
+}
+
+.act-avatar-group {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 5px !important;
+}
+
+.act-avatar-item {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.act-avatar-link {
+    display: inline-flex !important; /* 横並びを壊さない */
+    width: 100% !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+/* タイトルとフォントを「力強い」状態に固定 */
+.act-content-area h4 {
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 1rem 0 !important;
+    color: var(--base-inverse-color) !important;
+}
+.act-content-area p {
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+}
+.act-date-text { font-size: 1.1rem; font-weight: 800; color: var(--primary-color); }
+.act-view-more { font-size: 0.95rem; font-weight: 700; color: var(--primary-color); text-decoration: none !important; }
+.act-view-more::after { content: " →"; }

@@ -1,0 +1,28 @@
+<style>
+/* 徹底した出し分け */
+.pc-view-only { display: block !important; }
+.mobile-view-only { display: none !important; }
+
+@media screen and (max-width: 750px) {
+    .pc-view-only { display: none !important; }
+    .mobile-view-only { display: block !important; }
+    .mobile-header.mobile-view-only { display: flex !important; justify-content: space-between !important; align-items: center !important; }
+    /* モバイルでは中央寄せを全解除 */
+    .activity-contributors, .avatar-list, .activity-item {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+}
+
+/* PC版のレイアウト強制 */
+@media screen and (min-width: 751px) {
+    .activity-item { display: flex !important; }
+    .activity-left { width: 200px !important; flex-shrink: 0 !important; }
+}
+
+/* アバターの左並びと下線消去 */
+.activity-contributors { display: flex !important; align-items: center !important; justify-content: flex-start !important; gap: 10px !important; }
+.avatar-list { display: flex !important; justify-content: flex-start !important; gap: 5px !important; }
+.contributor-link { text-decoration: none !important; border: none !important; }
+</style>

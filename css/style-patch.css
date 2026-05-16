@@ -1,0 +1,17 @@
+.pc-only-col, .pc-only-footer { display: block; }
+.mobile-only-col, .mobile-only-footer { display: none; }
+
+@media (max-width: 750px) {
+    .pc-only-col, .pc-only-footer { display: none !important; }
+    .mobile-only-col { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .mobile-only-footer { display: block !important; }
+    .activity-left { display: none !important; }
+}
+
+/* 左寄せの強制 */
+.fixed-left, .activity-contributors, .avatar-list {
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+}
+.contributor-link { text-decoration: none !important; border: none !important; }

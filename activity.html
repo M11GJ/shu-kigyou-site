@@ -90,17 +90,34 @@
 
         .view-more-link::after { content: '→'; }
 
-        @media screen and (min-width: 768px) {
+        /* --- PC版（700px以上） --- */
+        @media screen and (min-width: 700px) {
             .activity-item {
                 display: flex;
                 align-items: flex-start;
-                text-align: left;
                 padding: 4rem 0;
             }
 
-            .activity-left {
+            .activity-left-col {
                 flex-basis: 220px;
                 flex-shrink: 0;
+                margin-bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .activity-header-mobile {
+                display: none !important;
+            }
+
+            .view-more-mobile { display: none !important; }
+            .tags-for-mobile { display: none !important; }
+
+            .tags-for-pc {
+                display: block !important;
+                margin-top: 0;
             }
 
             .activity-content {
@@ -108,69 +125,39 @@
                 padding-left: 4rem;
             }
 
-            /* PC版: ヘッダー（日付とリンク）を縦並びに */
-            .activity-header-mobile {
+            .view-more-for-pc {
                 display: block !important;
-                margin-bottom: 0;
-            }
-            .activity-date {
-                display: block;
-                margin-bottom: 0.5rem;
-            }
-            .activity-header-mobile .view-more-link {
-                display: block;
-                margin-top: 1rem;
-            }
-
-            /* PC版左側のアバター（日付の下） */
-            .contributors-for-pc { 
-                display: block !important; 
                 margin-top: 1.5rem;
-                max-width: 160px;
             }
-            .contributors-for-pc .avatar-list {
-                display: grid !important;
-                grid-template-columns: repeat(5, 1fr) !important;
-                gap: 5px !important;
-            }
-            .contributors-for-pc .contributor-avatar,
-            .contributors-for-pc .tag-icon {
-                width: 28px !important;
-                height: 28px !important;
-                font-size: 10px !important;
-            }
-            .contributors-for-pc .contributors-label {
-                font-size: 10px !important;
-                margin-bottom: 5px;
-            }
-
-            .contributors-for-mobile { display: none !important; }
         }
 
-        /* モバイル版（768px未満）の設定: 以前の完璧な状態を維持 */
-        @media screen and (max-width: 767px) {
-            .activity-header-mobile {
-                display: flex !important;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 1rem;
-            }
-            .activity-date { margin-bottom: 0; }
-            .activity-header-mobile .view-more-link { display: inline-block; }
-            
-            .contributors-for-pc { display: none !important; }
-            .contributors-for-mobile { display: block; margin-top: 1.5rem; }
-        }
-
-        /* 共通ボタン設定 */
+        /* ボタン */
         .btn-container { text-align: center; margin-top: 3rem; }
         #loadMoreBtn, #collapseBtn {
             padding: 1rem 3rem; font-size: 1rem; font-weight: 700; border-radius: 50px; cursor: pointer; border: none;
         }
         #loadMoreBtn { background: var(--primary-color); color: #fff; }
-        #collapseBtn { background: #888; color: #fff; display: none; }
+        #collapseBtn { background: #888; color: #fff; }
 
         .hidden-activity { display: none !important; }
+
+        /* モバイル版での寄稿者リストの横並び調整 */
+        @media screen and (max-width: 699px) {
+            .activity-contributors {
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 12px !important;
+                margin-top: 1.5rem !important;
+            }
+            .contributors-label {
+                margin-bottom: 0 !important;
+                flex-shrink: 0 !important;
+            }
+            .avatar-list {
+                max-width: none !important;
+                margin-top: 0 !important;
+            }
+        }
     </style>
 </head>
 
@@ -188,9 +175,9 @@
                 <ul>
                     <li><a href="activity.html">最近の活動</a></li>
                     <li><a href="members.html">部員紹介</a></li>
+                    <li><a href="index.html#about">起業部について</a></li>
                     <li><a href="index.html#faq">よくある質問</a></li>
                     <li><a href="index.html#flow">入部までの流れ</a></li>
-                    <li><a href="index.html#about">起業部について</a></li>
                     <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
@@ -203,93 +190,105 @@
             <div class="activity-container">
                 <!-- ACTIVITIES_START -->
 
-        <div class="activity-item" id="activity-0">
-            <div class="activity-left">
+        <div class="activity-item" id="activity-5">
+            <div class="activity-left-col">
                 <div class="activity-header-mobile">
                     <span class="activity-date">2026/1/22</span>
-                    <a href="https://note.com/shu_kigyou/n/nc0c78974b356?sub_rt=share_pb" class="view-more-link" target="_blank" rel="noopener">View More</a>
+                    <a href="https://note.com/shu_kigyou/n/nc0c78974b356?sub_rt=share_pb" class="view-more-link view-more-mobile" target="_blank" rel="noopener">View More</a>
                 </div>
-                <div class="contributors-for-pc"></div>
+                <span class="activity-date tags-for-pc">2026/1/22</span>
+                
             </div>
             <div class="activity-content">
                 <h4>部員がビジネスプランコンテストへ参加・優勝しました！</h4>
                 <p>「西京銀行アントレプレナー養成共同研究講座 ビジネスプランコンテスト」に、本学起業部から複数の学生が参加し優勝いたしました！</p>
-                <div class="contributors-for-mobile"></div>
-            </div>
-        </div>
-
-        <div class="activity-item" id="activity-1">
-            <div class="activity-left">
-                <div class="activity-header-mobile">
-                    <span class="activity-date">2025/12/23</span>
-                    
-                </div>
-                <div class="contributors-for-pc"></div>
-            </div>
-            <div class="activity-content">
-                <h4>クリスマスキッチンカーイベントを行いました🚚🎄</h4>
-                <p>周南公立大学S1号館前にてキッチンカーイベントを行いました！大学のクリスマスツリーや装飾と共に楽しいクリスマスイベントになりました🎅🏻</p>
-                <div class="contributors-for-mobile"></div>
-            </div>
-        </div>
-
-        <div class="activity-item" id="activity-2">
-            <div class="activity-left">
-                <div class="activity-header-mobile">
-                    <span class="activity-date">2025/12/22</span>
-                    <a href="https://www.kokuchpro.com/event/5a107ad4c69ec048398f0053d81478d1/" class="view-more-link" target="_blank" rel="noopener">View More</a>
-                </div>
-                <div class="contributors-for-pc"></div>
-            </div>
-            <div class="activity-content">
-                <h4>CROSS SPACE 紡さんと新しく交流会を立ち上げました！</h4>
-                <p>これまでの合同交流会とは姿を変えて新たに社会人向け交流イベント「ヨコいと」を立ち上げました。詳しくはCROSS SPACE 紡さんのSNSをチェック！</p>
-                <div class="contributors-for-mobile"></div>
-            </div>
-        </div>
-
-        <div class="activity-item" id="activity-3">
-            <div class="activity-left">
-                <div class="activity-header-mobile">
-                    <span class="activity-date">2025/12/18</span>
-                    <a href="https://note.com/shu_kigyou/n/nace3f84c24e3?sub_rt=share_pb" class="view-more-link" target="_blank" rel="noopener">View More</a>
-                </div>
-                <div class="contributors-for-pc"></div>
-            </div>
-            <div class="activity-content">
-                <h4>第2回 大学生限定 POKER 初心者講座開催決定！</h4>
-                <p>前回大盛況だった初心者講座第２回の開催が決定しました！！初心者講習付きなので未経験でも安心。「人生の予行演習」として決断力を磨く、熱狂の1日を体験しませんか？詳細は以下をチェック！！</p>
-                <div class="contributors-for-mobile"></div>
+                <a href="https://note.com/shu_kigyou/n/nc0c78974b356?sub_rt=share_pb" class="view-more-link view-more-for-pc" target="_blank" rel="noopener">View More</a>
+                
             </div>
         </div>
 
         <div class="activity-item" id="activity-4">
-            <div class="activity-left">
+            <div class="activity-left-col">
+                <div class="activity-header-mobile">
+                    <span class="activity-date">2025/12/23</span>
+                    
+                </div>
+                <span class="activity-date tags-for-pc">2025/12/23</span>
+                
+            </div>
+            <div class="activity-content">
+                <h4>クリスマスキッチンカーイベントを行いました🚚🎄</h4>
+                <p>周南公立大学S1号館前にてキッチンカーイベントを行いました！大学のクリスマスツリーや装飾と共に楽しいクリスマスイベントになりました🎅🏻</p>
+                
+                
+            </div>
+        </div>
+
+        <div class="activity-item" id="activity-3">
+            <div class="activity-left-col">
+                <div class="activity-header-mobile">
+                    <span class="activity-date">2025/12/22</span>
+                    <a href="https://www.kokuchpro.com/event/5a107ad4c69ec048398f0053d81478d1/" class="view-more-link view-more-mobile" target="_blank" rel="noopener">View More</a>
+                </div>
+                <span class="activity-date tags-for-pc">2025/12/22</span>
+                
+            </div>
+            <div class="activity-content">
+                <h4>CROSS SPACE 紡さんと新しく交流会を立ち上げました！</h4>
+                <p>これまでの合同交流会とは姿を変えて新たに社会人向け交流イベント「ヨコいと」を立ち上げました。詳しくはCROSS SPACE 紡さんのSNSをチェック！</p>
+                <a href="https://www.kokuchpro.com/event/5a107ad4c69ec048398f0053d81478d1/" class="view-more-link view-more-for-pc" target="_blank" rel="noopener">View More</a>
+                
+            </div>
+        </div>
+
+        <div class="activity-item" id="activity-2">
+            <div class="activity-left-col">
+                <div class="activity-header-mobile">
+                    <span class="activity-date">2025/12/18</span>
+                    <a href="https://note.com/shu_kigyou/n/nace3f84c24e3?sub_rt=share_pb" class="view-more-link view-more-mobile" target="_blank" rel="noopener">View More</a>
+                </div>
+                <span class="activity-date tags-for-pc">2025/12/18</span>
+                
+            </div>
+            <div class="activity-content">
+                <h4>第2回 大学生限定 POKER 初心者講座開催決定！</h4>
+                <p>前回大盛況だった初心者講座第２回の開催が決定しました！！初心者講習付きなので未経験でも安心。「人生の予行演習」として決断力を磨く、熱狂の1日を体験しませんか？詳細は以下をチェック！！</p>
+                <a href="https://note.com/shu_kigyou/n/nace3f84c24e3?sub_rt=share_pb" class="view-more-link view-more-for-pc" target="_blank" rel="noopener">View More</a>
+                
+            </div>
+        </div>
+
+        <div class="activity-item" id="activity-1">
+            <div class="activity-left-col">
                 <div class="activity-header-mobile">
                     <span class="activity-date">2025/11/2</span>
                     
                 </div>
-                <div class="contributors-for-pc"><div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><div class="contributor-avatar"><a href="members.html#member6" class="contributor-link"><span class="tag-icon" title="永尾　心温">SN</span></a></div><div class="contributor-avatar"><a href="members.html#member7" class="contributor-link"><span class="tag-icon" title="郡谷　考祐">KG</span></a></div><div class="contributor-avatar"><a href="members.html#member8" class="contributor-link"><span class="tag-icon" title="木村　凌">RY</span></a></div><div class="contributor-avatar"><a href="members.html#member10" class="contributor-link"><span class="tag-icon" title="村竹　瑠挙">RM</span></a></div><div class="contributor-avatar"><a href="members.html#member11" class="contributor-link"><span class="tag-icon" title="荒川　和輝">KA</span></a></div><div class="contributor-avatar"><a href="members.html#member13" class="contributor-link"><span class="tag-icon" title="松本　遥大">HM</span></a></div><div class="contributor-avatar"><a href="members.html#member17" class="contributor-link"><span class="tag-icon" title="塩見　蒼仁">AS</span></a></div><div class="contributor-avatar"><a href="members.html#member24" class="contributor-link"><span class="tag-icon" title="黒川　美咲">MK</span></a></div><div class="contributor-avatar"><a href="members.html#member21" class="contributor-link"><span class="tag-icon" title="藤井　千咲都">TF</span></a></div><div class="contributor-avatar"><a href="members.html#member23" class="contributor-link"><span class="tag-icon" title="惣路　遥菜">HS</span></a></div></div></div></div>
+                <span class="activity-date tags-for-pc">2025/11/2</span>
+                <div class="activity-contributors tags-for-pc"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><a href="members.html?id=member6" class="contributor-avatar"><span class="tag-icon" title="永尾　心温">SN</span></a><a href="members.html?id=member7" class="contributor-avatar"><span class="tag-icon" title="郡谷　考祐">KG</span></a><a href="members.html?id=member8" class="contributor-avatar"><span class="tag-icon" title="木村　凌">RY</span></a><a href="members.html?id=member10" class="contributor-avatar"><span class="tag-icon" title="村竹　瑠挙">RM</span></a><a href="members.html?id=member11" class="contributor-avatar"><span class="tag-icon" title="荒川　和輝">KA</span></a><a href="members.html?id=member13" class="contributor-avatar"><span class="tag-icon" title="松本　遥大">HM</span></a><a href="members.html?id=member17" class="contributor-avatar"><span class="tag-icon" title="塩見　蒼仁">AS</span></a><a href="members.html?id=member24" class="contributor-avatar"><span class="tag-icon" title="黒川　美咲">MK</span></a><a href="members.html?id=member21" class="contributor-avatar"><span class="tag-icon" title="藤井　千咲都">TF</span></a><a href="members.html?id=member23" class="contributor-avatar"><span class="tag-icon" title="惣路　遥菜">HS</span></a></div></div>
             </div>
             <div class="activity-content">
                 <h4>大学祭でワッフルを出展しました！🧇</h4>
                 <p>今年、初めて大学祭で模擬店を出店し、ワッフルを販売しました！詳しい活動内容や結果については、以下のリンクにまとめています。ぜひご覧ください！</p>
-                <div class="contributors-for-mobile"><div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><div class="contributor-avatar"><a href="members.html#member6" class="contributor-link"><span class="tag-icon" title="永尾　心温">SN</span></a></div><div class="contributor-avatar"><a href="members.html#member7" class="contributor-link"><span class="tag-icon" title="郡谷　考祐">KG</span></a></div><div class="contributor-avatar"><a href="members.html#member8" class="contributor-link"><span class="tag-icon" title="木村　凌">RY</span></a></div><div class="contributor-avatar"><a href="members.html#member10" class="contributor-link"><span class="tag-icon" title="村竹　瑠挙">RM</span></a></div><div class="contributor-avatar"><a href="members.html#member11" class="contributor-link"><span class="tag-icon" title="荒川　和輝">KA</span></a></div><div class="contributor-avatar"><a href="members.html#member13" class="contributor-link"><span class="tag-icon" title="松本　遥大">HM</span></a></div><div class="contributor-avatar"><a href="members.html#member17" class="contributor-link"><span class="tag-icon" title="塩見　蒼仁">AS</span></a></div><div class="contributor-avatar"><a href="members.html#member24" class="contributor-link"><span class="tag-icon" title="黒川　美咲">MK</span></a></div><div class="contributor-avatar"><a href="members.html#member21" class="contributor-link"><span class="tag-icon" title="藤井　千咲都">TF</span></a></div><div class="contributor-avatar"><a href="members.html#member23" class="contributor-link"><span class="tag-icon" title="惣路　遥菜">HS</span></a></div></div></div></div>
+                
+                <div class="activity-contributors tags-for-mobile"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><a href="members.html?id=member6" class="contributor-avatar"><span class="tag-icon" title="永尾　心温">SN</span></a><a href="members.html?id=member7" class="contributor-avatar"><span class="tag-icon" title="郡谷　考祐">KG</span></a><a href="members.html?id=member8" class="contributor-avatar"><span class="tag-icon" title="木村　凌">RY</span></a><a href="members.html?id=member10" class="contributor-avatar"><span class="tag-icon" title="村竹　瑠挙">RM</span></a><a href="members.html?id=member11" class="contributor-avatar"><span class="tag-icon" title="荒川　和輝">KA</span></a><a href="members.html?id=member13" class="contributor-avatar"><span class="tag-icon" title="松本　遥大">HM</span></a><a href="members.html?id=member17" class="contributor-avatar"><span class="tag-icon" title="塩見　蒼仁">AS</span></a><a href="members.html?id=member24" class="contributor-avatar"><span class="tag-icon" title="黒川　美咲">MK</span></a><a href="members.html?id=member21" class="contributor-avatar"><span class="tag-icon" title="藤井　千咲都">TF</span></a><a href="members.html?id=member23" class="contributor-avatar"><span class="tag-icon" title="惣路　遥菜">HS</span></a></div></div>
             </div>
         </div>
 
-        <div class="activity-item" id="activity-5">
-            <div class="activity-left">
+        <div class="activity-item" id="activity-0">
+            <div class="activity-left-col">
                 <div class="activity-header-mobile">
                     <span class="activity-date">2025/10/21</span>
-                    <a href="https://note.com/shu_kigyou/n/nb933f22aac87" class="view-more-link" target="_blank" rel="noopener">View More</a>
+                    <a href="https://note.com/shu_kigyou/n/nb933f22aac87" class="view-more-link view-more-mobile" target="_blank" rel="noopener">View More</a>
                 </div>
-                <div class="contributors-for-pc"><div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><div class="contributor-avatar"><a href="members.html#member7" class="contributor-link"><span class="tag-icon" title="郡谷　考祐">KG</span></a></div></div></div></div>
+                <span class="activity-date tags-for-pc">2025/10/21</span>
+                <div class="activity-contributors tags-for-pc"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><a href="members.html?id=member7" class="contributor-avatar"><span class="tag-icon" title="郡谷　考祐">KG</span></a></div></div>
             </div>
             <div class="activity-content">
                 <h4>公式ホームページを開設しました！</h4>
                 <p>今までゼブラクラブとして存在していたホームページ。世代が変わりゼブラクラブから周南公立大学起業部としてサイトが新たに生まれ変わりました！これからもよろしくお願いします！</p>
-                <div class="contributors-for-mobile"><div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><div class="contributor-avatar"><a href="members.html#member7" class="contributor-link"><span class="tag-icon" title="郡谷　考祐">KG</span></a></div></div></div></div>
+                <a href="https://note.com/shu_kigyou/n/nb933f22aac87" class="view-more-link view-more-for-pc" target="_blank" rel="noopener">View More</a>
+                <div class="activity-contributors tags-for-mobile"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list"><a href="members.html?id=member7" class="contributor-avatar"><span class="tag-icon" title="郡谷　考祐">KG</span></a></div></div>
             </div>
         </div>
                 <!-- ACTIVITIES_END -->
@@ -301,6 +300,10 @@
         <footer>
             <div>
                 <p class="logo"><img src="images/logo.png" alt="周南公立大学 起業部"></p>
+                <ul class="icons">
+                    <li><a href="https://x.com/zebra_kigyo?lang=ja" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/zebra_kigyo/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
                 <small>Copyright&copy; Shunan University Entrepreneurship Club All Rights Reserved.</small>
             </div>
             <div>

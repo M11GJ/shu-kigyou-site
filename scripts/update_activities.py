@@ -9,58 +9,71 @@ MAX_AVATARS = 15
 
 def generate_activity_html(activities, members):
     if not isinstance(activities, list): return None
-    def get_date(x):
-        d = x.get('date', '1900/01/01').replace('.', '/')
-        try: return datetime.datetime.strptime(d, '%Y/%m/%d')
-        except: return datetime.datetime(1900, 1, 1)
-    activities.sort(key=get_date, reverse=True)
     
-    html_parts = []
-    for i, act in enumerate(activities):
-        date_str = str(act.get('date', ''))
-        if date_str.startswith('member') or '@' in str(act.get('title', '')): continue
+    # 各記事のHTMLを生成（ソート前のインデックスをIDに使用）
+    activities_with_html = []
+    
+    for i, activity in enumerate(activities):
+        date_str = str(activity.get('date', ''))
+        if date_str.startswith('member') or '@' in str(activity.get('title', '')): continue
         date = date_str.replace('.', '/')
-        title = act.get('title', '')
-        content = act.get('content', '')
-        link = act.get('link', '')
-        tagged_ids = act.get('taggedIds', [])
+        title = activity.get('title', '')
+        content = activity.get('content', '')
+        link = activity.get('link', '')
+        tagged_ids = activity.get('taggedIds', [])
         
-        contributors_html_content = ""
+        # IDを固定（JSON内の元のインデックスを使用）
+        item_id = f"activity-{i}"
+        
+        # 寄稿者アバターの生成
+        avatar_items = []
+        display_count = 0
         if tagged_ids:
-            avatar_items = []
-            display_count = 0
             for m_id in tagged_ids:
                 if not m_id or display_count >= MAX_AVATARS: continue
                 if m_id in members:
                     m = members[m_id]
                     img = f'<img src="{m["avatar"]}" alt="{m["name"]}" title="{m["name"]}">' if (m.get('displaySetting') == '名前' and m.get('avatar')) else f'<span class="tag-icon" title="{m.get("name","")}">{m.get("initial","")}</span>'
-                    link_html = f'<a href="members.html#{m_id}" class="contributor-link">{img}</a>'
-                    avatar_items.append(f'<div class="contributor-avatar">{link_html}</div>')
+                    avatar_items.append(f'<a href="members.html?id={m_id}" class="contributor-avatar">{img}</a>')
                     display_count += 1
             if len(tagged_ids) > MAX_AVATARS:
                 avatar_items.append(f'<div class="plus-counter">+{len(tagged_ids) - MAX_AVATARS}</div>')
-            if avatar_items:
-                contributors_html_content = f'<div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list">{"".join(avatar_items)}</div></div>'
-
-        view_more_btn = f'<a href="{link}" class="view-more-link" target="_blank" rel="noopener">View More</a>' if link else ""
         
-        # モバイル版で絶賛された時の構造をベースに、PC用アバターだけを「追加」
+        contributors_html = ""
+        if avatar_items:
+            contributors_html = f'<div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list">{"".join(avatar_items)}</div></div>'
+
+        # View More ボタン（出し分け用）
+        view_more_mobile = f'<a href="{link}" class="view-more-link view-more-mobile" target="_blank" rel="noopener">View More</a>' if link else ""
+        view_more_pc = f'<a href="{link}" class="view-more-link view-more-for-pc" target="_blank" rel="noopener">View More</a>' if link else ""
+        
+        contributors_mobile = contributors_html.replace('activity-contributors', 'activity-contributors tags-for-mobile') if contributors_html else ""
+        contributors_pc = contributors_html.replace('activity-contributors', 'activity-contributors tags-for-pc') if contributors_html else ""
+
         item_html = f"""
-        <div class="activity-item" id="activity-{i}">
-            <div class="activity-left">
+        <div class="activity-item" id="{item_id}">
+            <div class="activity-left-col">
                 <div class="activity-header-mobile">
                     <span class="activity-date">{date}</span>
-                    {view_more_btn}
+                    {view_more_mobile}
                 </div>
-                <div class="contributors-for-pc">{contributors_html_content}</div>
+                <span class="activity-date tags-for-pc">{date}</span>
+                {contributors_pc}
             </div>
             <div class="activity-content">
                 <h4>{title}</h4>
                 <p>{content}</p>
-                <div class="contributors-for-mobile">{contributors_html_content}</div>
+                {view_more_pc}
+                {contributors_mobile}
             </div>
         </div>"""
-        html_parts.append(item_html)
+        
+        activities_with_html.append((date, item_html))
+
+    # 日付の新しい順にソートしてHTMLを結合
+    activities_with_html.sort(key=lambda x: x[0], reverse=True)
+    html_parts = [item[1] for item in activities_with_html]
+    
     return "\n".join(html_parts)
 
 def update_activity_page():

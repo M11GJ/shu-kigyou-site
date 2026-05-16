@@ -199,16 +199,16 @@ function openMemberModal(memberId) {
     // 2. 活動一覧(activities.json)から自分がタグ付けされているものを自動抽出して合流
     if (activityData && activityData.length > 0) {
         const autoActivities = activityData
-            .map((act, index) => ({ ...act, originalIndex: index })) // 元の並び順をIDとして保持
+            .map((act, index) => ({ ...act, originalIndex: index })) // 元の並び順（ID）を保持
             .filter(act => act.taggedIds && act.taggedIds.includes(memberId))
             .map(act => ({
                 date: act.date,
                 title: act.title,
                 content: act.content,
                 link: act.link,
-                jumpLink: `activity.html#activity-${act.originalIndex}`, // ジャンプ先
+                jumpLink: `activity.html#activity-${act.originalIndex}`, // 固定IDを使用
                 type: 'club',
-                isAuto: true // 自動取得フラグ
+                isAuto: true
             }));
         combinedTimeline = [...combinedTimeline, ...autoActivities];
     }
