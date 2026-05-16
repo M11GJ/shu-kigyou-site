@@ -91,7 +91,11 @@ def update_activity_page():
         return
 
     with open(ACTIVITIES_JSON_PATH, 'r', encoding='utf-8') as f:
+        try:
         activities = json.load(f)
+    except json.JSONDecodeError:
+        print("Error: activities.json is not valid JSON")
+        return None
     
     members = {}
     if os.path.exists(MEMBERS_JSON_PATH):

@@ -17,8 +17,16 @@ jobs:
 
       - name: Fetch activities from GAS
         run: |
-          curl -L "${{ secrets.SPREADSHEET_API_URL }}" -o /tmp/activities.json
-          echo "Debug: Data preview: $(head -c 100 /tmp/activities.json)"
+          # 通信失敗時にエラーを出す設定 (-f), 詳細ログ出力 (-vは秘匿情報が出るため避けるが、ステータスは出す)
+          curl -sSL -w "HTTP Status: %{http_code}\n" "${{ secrets.SPREADSHEET_API_URL }}" -o /tmp/activities.json
+          
+          echo "Debug: File size: $(stat -c%s /tmp/activities.json) bytes"
+          echo "Debug: Content preview: $(cat /tmp/activities.json | head -c 200)"
+          
+          if [ ! -s /tmp/activities.json ]; then
+            echo "Error: Received empty file from GAS"
+            exit 1
+          fi
 
       - name: Update site
         run: |
