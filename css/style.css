@@ -126,75 +126,79 @@ a {
 	transition: 0.3s;	/*hoverまでにかける時間。0.3秒。*/
 }
 
-/* 活動実績の寄稿者アバターリスト */
+/* 活動実績の寄稿者アバターリスト - 強力な上書き */
 .activity-contributors {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    margin: 15px 0 10px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
 }
 
 .contributors-label {
-    font-size: 0.7rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+    font-size: 11px !important;
+    color: #999 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
 }
 
 .avatar-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    align-items: center !important;
+    margin-left: 0 !important;
 }
 
 .contributor-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: #f0f0f0;
-    border: 1px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    background: #f8f8f8 !important;
+    border: 2px solid #fff !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important; /* 重なりを強制解除 */
+    transition: all 0.3s ease !important;
 }
 
 .contributor-avatar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-color: #04b59f;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    border-color: #04b59f !important;
 }
 
 .contributor-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
 .contributor-avatar .tag-icon {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #04b59f;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    color: #04b59f !important;
 }
 
-/* +N のカウンターバッジ */
 .avatar-list .plus-counter {
-    font-size: 0.7rem;
-    color: #666;
-    background: #eee;
-    padding: 0 8px;
-    height: 28px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    border: 1px solid #e0e0e0;
+    font-size: 11px !important;
+    color: #777 !important;
+    background: #f0f0f0 !important;
+    padding: 0 10px !important;
+    height: 32px !important;
+    border-radius: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 700 !important;
+    border: 2px solid #fff !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    margin-left: 0 !important;
 }
 
 /*マウスオン時*/
@@ -1861,3 +1865,4 @@ section#faq .btn1 a:hover {
     }
 
 }
+/* Last Updated: Sat May 16 14:53:19 JST 2026 */

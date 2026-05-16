@@ -23,7 +23,7 @@ jobs:
       - name: Fetch and embed activities
         run: |
           # スプレッドシートからデータを取得
-          curl -L "${{ secrets.SPREADSHEET_API_URL }}?type=activities" -o /tmp/activities.json
+          curl -L "${{ secrets.SPREADSHEET_API_URL }}" -o /tmp/activities.json
           
           # JSONが有効か確認
           if ! jq empty /tmp/activities.json 2>/dev/null; then
