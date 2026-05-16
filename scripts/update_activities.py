@@ -8,32 +8,24 @@ ACTIVITIES_JSON_PATH = 'data/activities.json'
 MAX_AVATARS = 15
 
 def generate_activity_html(activities, members):
-    if not isinstance(activities, list):
-        return None
-    
+    if not isinstance(activities, list): return None
     def get_date(x):
         d = x.get('date', '1900/01/01').replace('.', '/')
-        try:
-            return datetime.datetime.strptime(d, '%Y/%m/%d')
-        except:
-            return datetime.datetime(1900, 1, 1)
-
+        try: return datetime.datetime.strptime(d, '%Y/%m/%d')
+        except: return datetime.datetime(1900, 1, 1)
     activities.sort(key=get_date, reverse=True)
     
     html_parts = []
     for i, act in enumerate(activities):
         date_str = str(act.get('date', ''))
-        if date_str.startswith('member') or '@' in str(act.get('title', '')):
-            continue
-            
+        if date_str.startswith('member') or '@' in str(act.get('title', '')): continue
         date = date_str.replace('.', '/')
         title = act.get('title', '')
         content = act.get('content', '')
         link = act.get('link', '')
         tagged_ids = act.get('taggedIds', [])
         
-        # 寄稿者HTML（下部に配置）
-        contributors_html = ""
+        contributors_html_content = ""
         if tagged_ids:
             avatar_items = []
             display_count = 0
@@ -48,22 +40,24 @@ def generate_activity_html(activities, members):
             if len(tagged_ids) > MAX_AVATARS:
                 avatar_items.append(f'<div class="plus-counter">+{len(tagged_ids) - MAX_AVATARS}</div>')
             if avatar_items:
-                contributors_html = f'<div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list">{"".join(avatar_items)}</div></div>'
+                contributors_html_content = f'<div class="activity-contributors"><span class="contributors-label">ACTIVITY BY</span><div class="avatar-list">{"".join(avatar_items)}</div></div>'
 
-        # View More（右上に配置）
         view_more_btn = f'<a href="{link}" class="view-more-link" target="_blank" rel="noopener">View More</a>' if link else ""
         
-        # 構造を再構築
+        # モバイル版で絶賛された時の構造をベースに、PC用アバターだけを「追加」
         item_html = f"""
         <div class="activity-item" id="activity-{i}">
-            <div class="activity-header-mobile">
-                <span class="activity-date">{date}</span>
-                {view_more_btn}
+            <div class="activity-left">
+                <div class="activity-header-mobile">
+                    <span class="activity-date">{date}</span>
+                    {view_more_btn}
+                </div>
+                <div class="contributors-for-pc">{contributors_html_content}</div>
             </div>
             <div class="activity-content">
                 <h4>{title}</h4>
                 <p>{content}</p>
-                {contributors_html}
+                <div class="contributors-for-mobile">{contributors_html_content}</div>
             </div>
         </div>"""
         html_parts.append(item_html)
