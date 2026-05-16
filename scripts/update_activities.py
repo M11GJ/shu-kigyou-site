@@ -9,6 +9,11 @@ ACTIVITIES_JSON_PATH = 'data/activities.json'
 MAX_AVATARS = 15 # 表示する最大人数
 
 def generate_activity_html(activities, members):
+    # データの整合性チェック
+    if not isinstance(activities, list):
+        print(f"Error: Expected list of activities, but got {type(activities)}. Skipping update.")
+        return None
+    
     html_parts = []
     for i, act in enumerate(activities): # インデックスを追加
         date = act.get('date', '').replace('.', '/')

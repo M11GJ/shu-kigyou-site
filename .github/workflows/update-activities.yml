@@ -25,9 +25,12 @@ jobs:
           # スプレッドシートからデータを取得
           curl -L "${{ secrets.SPREADSHEET_API_URL }}" -o /tmp/activities.json
           
+          # デバッグ用：取得データの先頭を確認
+          echo "Debug: Data start: $(head -c 100 /tmp/activities.json)"
+          
           # JSONが有効か確認
           if ! jq empty /tmp/activities.json 2>/dev/null; then
-            echo "Error: Invalid JSON received"
+            echo "Error: Invalid JSON received from GAS"
             exit 1
           fi
           
