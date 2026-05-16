@@ -6,7 +6,7 @@ import re
 ACTIVITY_HTML_PATH = 'activity.html'
 MEMBERS_JSON_PATH = 'data/members.json'
 ACTIVITIES_JSON_PATH = 'data/activities.json'
-MAX_AVATARS = 5 # 表示する最大人数
+MAX_AVATARS = 8 # 表示する最大人数
 
 def generate_activity_html(activities, members):
     html_parts = []
