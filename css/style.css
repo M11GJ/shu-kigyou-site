@@ -149,6 +149,8 @@ a {
     gap: 8px !important;
     align-items: center !important;
     margin-left: 0 !important;
+    padding-left: 0 !important;
+    max-width: 200px !important; /* 5人(32px+gap)並んだら改行 */
 }
 
 .contributor-avatar {
