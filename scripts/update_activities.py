@@ -15,8 +15,14 @@ def generate_activity_html(activities, members):
         return None
     
     html_parts = []
-    for i, act in enumerate(activities): # インデックスを追加
-        date = act.get('date', '').replace('.', '/')
+    for i, act in enumerate(activities):
+        date_str = str(act.get('date', ''))
+        # 【ガード】日付が 'member' で始まる、または日付として明らかに異常な場合はスキップ
+        if date_str.startswith('member') or '@' in str(act.get('title', '')):
+            print(f"Skipping invalid activity data: {date_str}")
+            continue
+            
+        date = date_str.replace('.', '/')
         title = act.get('title', '')
         content = act.get('content', '')
         link = act.get('link', '')
