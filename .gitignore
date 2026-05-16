@@ -1,0 +1,10 @@
+# Subdirectories to ignore
+shu-kigyou-site-main 3/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.swp

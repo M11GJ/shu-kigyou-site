@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWM10F8HQ3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NWM10F8HQ3');
+    </script>
+    <meta charset="UTF-8">
+    <title>最近の活動 | 周南公立大学 起業部</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="周南公立大学起業部の最近の活動をご紹介します。">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/members.css">
+    <link rel="icon" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <style>
+        .page-header {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+            background: #f3f3e9;
+            text-align: center;
+        }
+
+        .activity-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 4rem 5vw;
+        }
+
+        .activity-item {
+            padding: 2.5rem 0;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .activity-item.hidden-activity { display: none; }
+        .activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .activity-item:first-child { padding-top: 0; }
+
+        /* --- モバイル版（デフォルト） --- */
+        .activity-header-mobile {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-date {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        /* 出し分け用クラス */
+        .tags-for-pc { display: none !important; }
+        .view-more-for-pc { display: none !important; }
+        .tags-for-mobile { display: block !important; margin-top: 1.5rem; }
+        .view-more-mobile { display: block !important; }
+
+        .activity-content h4 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0 0 1rem 0;
+            color: var(--base-inverse-color);
+            line-height: 1.4;
+        }
+
+        .activity-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 0;
+            color: #333;
+        }
+
+        .view-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .view-more-link::after { content: '→'; }
+
+        /* --- PC版（700px以上） --- */
+        @media screen and (min-width: 700px) {
+            .activity-item {
+                display: flex;
+                align-items: flex-start;
+                padding: 4rem 0;
+            }
+
+            .activity-left-col {
+                flex-basis: 220px;
+                flex-shrink: 0;
+                margin-bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .activity-header-mobile {
+                display: block;
+                margin-bottom: 0;
+            }
+
+            .view-more-mobile { display: none !important; }
+            .tags-for-mobile { display: none !important; }
+
+            .tags-for-pc {
+                display: block !important;
+                margin-top: 1.2rem;
+            }
+
+            .activity-content {
+                flex-grow: 1;
+                padding-left: 4rem;
+            }
+
+            .view-more-for-pc {
+                display: block !important;
+                margin-top: 1.5rem;
+            }
+        }
+
+        /* ボタン */
+        .btn-container { text-align: center; margin-top: 3rem; display: none; }
+        #loadMoreBtn, #collapseBtn {
+            padding: 1rem 3rem; font-size: 1rem; font-weight: 700; border-radius: 50px; cursor: pointer; border: none;
+        }
+        #loadMoreBtn { background: var(--primary-color); color: #fff; }
+        #collapseBtn { background: #888; color: #fff; }
+
+        .hidden-activity { display: none !important; }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <div class="header-left">
+                <h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="周南公立大学 起業部"></a></h1>
+                <ul class="header-sns">
+                    <li><a href="https://x.com/zebra_kigyo?lang=ja" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/zebra_kigyo/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="activity.html">最近の活動</a></li>
+                    <li><a href="members.html">部員紹介</a></li>
+                    <li><a href="index.html#faq">よくある質問</a></li>
+                    <li><a href="index.html#flow">入部までの流れ</a></li>
+                    <li><a href="index.html#about">起業部について</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="activity-page">
+            <section class="page-header">
+                <h2 class="c">最近の活動<span>Recent Activities</span></h2>
+            </section>
+            <div class="activity-container">
+                <!-- ACTIVITIES_START -->
+<div class="activity-item" id="activity-0">
+    <div class="activity-left-col">
+        <div class="activity-header-mobile">
+            <span class="activity-date">2026/01/22</span>
+            <div class="view-more-mobile"><a href="https://note.com/shu_kigyou/n/nc0c78974b356?sub_rt=share_pb" target="_blank" class="view-more-link">View More</a></div>
+        </div>
+        <div class="tags-for-pc"></div>
+    </div>
+    <div class="activity-content">
+        <h4>部員がビジネスプランコンテストへ参加・優勝しました！</h4>
+        <p>「西京銀行アントレプレナー養成共同研究講座 ビジネスプランコンテスト」に、本学起業部から複数の学生が参加し優勝いたしました！</p>
+        <div class="tags-for-mobile"></div>
+        <div class="view-more-for-pc"><a href="https://note.com/shu_kigyou/n/nc0c78974b356?sub_rt=share_pb" target="_blank" class="view-more-link">View More</a></div>
+    </div>
+</div>
+
+<div class="activity-item" id="activity-1">
+    <div class="activity-left-col">
+        <div class="activity-header-mobile">
+            <span class="activity-date">2025/12/23</span>
+            <div class="view-more-mobile"></div>
+        </div>
+        <div class="tags-for-pc"></div>
+    </div>
+    <div class="activity-content">
+        <h4>クリスマスキッチンカーイベントを行いました🚚🎄</h4>
+        <p>周南公立大学S1号館前にてキッチンカーイベントを行いました！大学のクリスマスツリーや装飾と共に楽しいクリスマスイベントになりました🎅🏻</p>
+        <div class="tags-for-mobile"></div>
+        <div class="view-more-for-pc"></div>
+    </div>
+</div>
+
+<div class="activity-item" id="activity-2">
+    <div class="activity-left-col">
+        <div class="activity-header-mobile">
+            <span class="activity-date">2025/12/22</span>
+            <div class="view-more-mobile"><a href="https://www.kokuchpro.com/event/5a107ad4c69ec048398f0053d81478d1/" target="_blank" class="view-more-link">View More</a></div>
+        </div>
+        <div class="tags-for-pc"></div>
+    </div>
+    <div class="activity-content">
+        <h4>CROSS SPACE 紡さんと新しく交流会を立ち上げました！</h4>
+        <p>これまでの合同交流会とは姿を変えて新たに社会人向け交流イベント「ヨコいと」を立ち上げました。詳しくはCROSS SPACE 紡さんのSNSをチェック！</p>
+        <div class="tags-for-mobile"></div>
+        <div class="view-more-for-pc"><a href="https://www.kokuchpro.com/event/5a107ad4c69ec048398f0053d81478d1/" target="_blank" class="view-more-link">View More</a></div>
+    </div>
+</div>
+
+<div class="activity-item" id="activity-3">
+    <div class="activity-left-col">
+        <div class="activity-header-mobile">
+            <span class="activity-date">2025/12/18</span>
+            <div class="view-more-mobile"><a href="https://note.com/shu_kigyou/n/nace3f84c24e3?sub_rt=share_pb" target="_blank" class="view-more-link">View More</a></div>
+        </div>
+        <div class="tags-for-pc"></div>
+    </div>
+    <div class="activity-content">
+        <h4>第2回 大学生限定 POKER 初心者講座開催決定！</h4>
+        <p>前回大盛況だった初心者講座第２回の開催が決定しました！！初心者講習付きなので未経験でも安心。「人生の予行演習」として決断力を磨く、熱狂の1日を体験しませんか？詳細は以下をチェック！！</p>
+        <div class="tags-for-mobile"></div>
+        <div class="view-more-for-pc"><a href="https://note.com/shu_kigyou/n/nace3f84c24e3?sub_rt=share_pb" target="_blank" class="view-more-link">View More</a></div>
+    </div>
+</div>
+
+<div class="activity-item" id="activity-4">
+    <div class="activity-left-col">
+        <div class="activity-header-mobile">
+            <span class="activity-date">2025/11/02</span>
+            <div class="view-more-mobile"></div>
+        </div>
+        <div class="tags-for-pc"></div>
+    </div>
+    <div class="activity-content">
+        <h4>大学祭でワッフルを出展しました！🧇</h4>
+        <p>今年、初めて大学祭で模擬店を出店し、ワッフルを販売しました！詳しい活動内容や結果については、以下のリンクにまとめています。ぜひご覧ください！</p>
+        <div class="tags-for-mobile"></div>
+        <div class="view-more-for-pc"></div>
+    </div>
+</div>
+
+<div class="activity-item" id="activity-5">
+    <div class="activity-left-col">
+        <div class="activity-header-mobile">
+            <span class="activity-date">2025/10/21</span>
+            <div class="view-more-mobile"><a href="https://note.com/shu_kigyou/n/nb933f22aac87" target="_blank" class="view-more-link">View More</a></div>
+        </div>
+        <div class="tags-for-pc"><div class="activity-contributors"><span class="contributors-label">Activity by</span><div class="avatar-list">
+                    <a href="members.html?id=member7" class="contributor-avatar" title="郡谷　考祐">
+                        <span class="tag-icon">K</span>
+                    </a></div></div></div>
+    </div>
+    <div class="activity-content">
+        <h4>公式ホームページを開設しました！</h4>
+        <p>今までゼブラクラブとして存在していたホームページ。世代が変わりゼブラクラブから周南公立大学起業部としてサイトが新たに生まれ変わりました！これからもよろしくお願いします！</p>
+        <div class="tags-for-mobile"><div class="activity-contributors"><span class="contributors-label">Activity by</span><div class="avatar-list">
+                    <a href="members.html?id=member7" class="contributor-avatar" title="郡谷　考祐">
+                        <span class="tag-icon">K</span>
+                    </a></div></div></div>
+        <div class="view-more-for-pc"><a href="https://note.com/shu_kigyou/n/nb933f22aac87" target="_blank" class="view-more-link">View More</a></div>
+    </div>
+</div>
+                <!-- ACTIVITIES_END -->
+                <div id="load-more-container" class="btn-container"><button id="loadMoreBtn">もっと見る</button></div>
+                <div id="collapse-container" class="btn-container"><button id="collapseBtn">しまう</button></div>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <p class="logo"><img src="images/logo.png" alt="周南公立大学 起業部"></p>
+                <small>Copyright&copy; Shunan University Entrepreneurship Club All Rights Reserved.</small>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="index.html#about">起業部について</a></li>
+                    <li><a href="index.html#faq">よくある質問</a></li>
+                    <li><a href="index.html#flow">入部までの流れ</a></li>
+                    <li><a href="activity.html">最近の活動</a></li>
+                    <li><a href="members.html">部員紹介</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <div id="menubar_hdr"><span></span><span></span><span></span></div>
+    <div id="menubar">
+        <p class="logo"><img src="images/logo.png" alt="周南公立大学 起業部"></p>
+        <nav>
+            <ul>
+                <li><a href="activity.html">最近の活動</a></li>
+                <li><a href="members.html">部員紹介</a></li>
+                <li><a href="index.html#about">起業部について</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/activity-loader.js"></script>
+</body>
+</html>

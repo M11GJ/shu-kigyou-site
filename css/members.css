@@ -1,0 +1,682 @@
+/* members.css - Premium Member Profiles */
+
+/* Members Section Grid */
+.members-filter-section {
+    max-width: 1600px;
+    margin: 40px auto 20px auto;
+    padding: 0 4vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+    background: #fff;
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(4, 181, 159, 0.1);
+}
+
+.filter-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: #f5f5f5;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn:hover {
+    background: #e0e0e0;
+}
+
+.filter-btn.active {
+    background: var(--base-inverse-color);
+    color: #fff;
+}
+
+.members-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 4vw 80px;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* モバイルで2列表示 */
+    gap: 15px; /* 隙間を少し狭く */
+    margin-top: 30px;
+}
+
+/* Member Card */
+.member-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); /* 影を強めて境界を明確に */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(4, 181, 159, 0.15); /* Primary color shadow */
+}
+
+.member-card-header {
+    height: 100px; /* モバイルでは少し低く */
+    background: linear-gradient(135deg, var(--primary-color) 0%, #038c7b 100%);
+    position: relative;
+}
+
+.member-avatar-wrapper {
+    position: absolute;
+    bottom: -40px; /* 位置を調整 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px; /* アバターを少しコンパクトに */
+    height: 90px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.member-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.member-info {
+    padding: 40px 10px 20px; /* パディングをさらに詰める */
+    text-align: center;
+}
+
+.member-name {
+    font-size: 1.1rem; /* 2列に合わせてサイズダウン */
+    font-weight: 800;
+    margin: 0 0 3px 0;
+    color: var(--base-inverse-color);
+    word-break: break-all; /* 改行を許容 */
+}
+
+.member-role {
+    font-size: 0.85rem; /* 2列に合わせてサイズダウン */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 0 10px 0;
+}
+
+.member-department {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.member-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    font-size: 0.7rem; /* タグも小さく */
+    padding: 2px 8px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    color: #666;
+}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: rgba(4, 181, 159, 0.1);
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Custom Icon Overlay */
+.icon-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary-color);
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border: 2px solid #fff;
+}
+
+
+/* Global Utilities */
+.mobile-br {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .mobile-br {
+        display: block;
+    }
+}
+
+/* --- Layout --- */
+.member-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.member-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.member-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    border-radius: 24px;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+}
+
+.member-modal-overlay.active .member-modal {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Modal Close Button */
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
+
+/* Modal Header */
+.modal-header {
+    background: linear-gradient(135deg, var(--base-inverse-color) 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 60px 40px 40px;
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .modal-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px 20px;
+    }
+}
+
+.modal-avatar-wrapper {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.modal-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.modal-header-info {
+    flex-grow: 1;
+}
+
+.modal-name {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+}
+
+.modal-role {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.modal-department {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.modal-sns {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .modal-sns {
+        justify-content: center;
+    }
+}
+
+.sns-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.sns-link:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 40px;
+    background: #fff;
+}
+
+@media screen and (min-width: 768px) {
+    .members-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* PCでは自動多列表示 */
+        gap: 30px;
+    }
+    .member-card-header {
+        height: 120px;
+    }
+    .member-avatar-wrapper {
+        width: 110px;
+        height: 110px;
+        bottom: -55px;
+    }
+    .member-info {
+        padding: 70px 20px 30px;
+    }
+    .member-name {
+        font-size: 1.5rem;
+    }
+    .member-role {
+        font-size: 0.95rem;
+    }
+    .tag {
+        font-size: 0.85rem;
+        padding: 4px 12px;
+    }
+}
+
+.modal-section {
+    margin-bottom: 40px;
+}
+
+.modal-section-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--base-inverse-color);
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-section-title i {
+    color: var(--primary-color);
+}
+
+.modal-message {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Skills/Tags in Modal */
+.modal-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.modal-skill-tag {
+    background: var(--base-inverse-color);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    width: 2px;
+    background: #eaeaea;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(4, 181, 159, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--primary-color);
+}
+
+.timeline-dot.personal {
+    border-color: #4D96FF;
+    color: #4D96FF;
+    box-shadow: 0 0 0 4px rgba(77, 150, 255, 0.1);
+}
+
+.timeline-type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.badge-club {
+    background: rgba(4, 181, 159, 0.1);
+    color: var(--primary-color);
+}
+
+.badge-personal {
+    background: rgba(77, 150, 255, 0.1);
+    color: #4D96FF;
+}
+
+.timeline-date {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.timeline-content {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: 0.3s;
+}
+
+.timeline-content:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    border-color: rgba(4, 181, 159, 0.3);
+}
+
+.timeline-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: var(--base-inverse-color);
+}
+
+.timeline-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Portfolio Link in Timeline */
+.timeline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.timeline-link:hover {
+    text-decoration: underline;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* GitHub-style Contributors List */
+.activity-contributors {
+    display: flex;
+    flex-direction: row; /* モバイルではデフォルト横並び */
+    align-items: center;
+    margin-top: 15px;
+    gap: 12px;
+}
+
+.contributors-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.avatar-list {
+    display: flex;
+    align-items: center;
+}
+
+.contributor-avatar {
+    width: 32px;
+    height: 32px;
+    margin-left: -8px; /* 重なりを作る */
+    position: relative;
+    border-radius: 50%;
+    border: 2px solid #fff; /* 重なった時の境界 */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    z-index: 1;
+    overflow: visible; /* ツールチップ等に配慮 */
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contributor-avatar:first-child {
+    margin-left: 0;
+}
+
+.contributor-avatar:hover {
+    transform: translateY(-4px);
+    z-index: 10; /* 重なり順を一番上に */
+    box-shadow: 0 4px 12px rgba(4, 181, 159, 0.2);
+}
+
+.contributor-avatar img,
+.contributor-avatar .tag-icon,
+.contributor-avatar.plus-counter {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #666;
+    background: #f0f0f0;
+}
+
+.contributor-avatar img,
+.contributor-avatar .tag-icon {
+    color: var(--primary-color);
+    background: #fff;
+    font-size: 0.9rem;
+}
+
+/* PC用：サイズを少し大きくする */
+@media screen and (min-width: 700px) {
+    .activity-contributors {
+        margin-top: 15px;
+        flex-direction: column; /* PCでは縦に積む */
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .contributors-label {
+        font-size: 0.8rem;
+    }
+    .contributor-avatar {
+        width: 38px;
+        height: 38px;
+        border-width: 3px;
+    }
+}
