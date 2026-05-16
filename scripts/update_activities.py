@@ -11,7 +11,6 @@ def generate_activity_html(activities, members):
     if not isinstance(activities, list):
         return None
     
-    # 【修正】日付の降順（新しい順）に並び替え
     def get_date(x):
         d = x.get('date', '1900/01/01').replace('.', '/')
         try:
@@ -45,14 +44,16 @@ def generate_activity_html(activities, members):
                         img = f'<img src="{m["avatar"]}" alt="{m["name"]}" title="{m["name"]}">'
                     else:
                         img = f'<span class="tag-icon" title="{m.get("name","")}">{m.get("initial","")}</span>'
-                    avatar_items.append(f'<div class="contributor-avatar">{img}</div>')
+                    
+                    # 【修正】部員プロフィールへのリンクを追加
+                    link_html = f'<a href="members.html#{m_id}" class="contributor-link">{img}</a>'
+                    avatar_items.append(f'<div class="contributor-avatar">{link_html}</div>')
                     display_count += 1
             if len(tagged_ids) > MAX_AVATARS:
                 avatar_items.append(f'<div class="plus-counter">+{len(tagged_ids) - MAX_AVATARS}</div>')
             if avatar_items:
                 contributors_html = f'<div class="activity-contributors"><span class="contributors-label">Activity By</span><div class="avatar-list">{"".join(avatar_items)}</div></div>'
 
-        # 【修正】View Moreの矢印を削除（CSSに任せる）
         view_more_btn = f'<a href="{link}" class="view-more-link" target="_blank" rel="noopener">View More</a>' if link else ""
         
         item_html = f"""
